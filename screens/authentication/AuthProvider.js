@@ -18,13 +18,13 @@ const AuthProvider = ({ children }) => {
             const credentials = firebase.auth.GoogleAuthProvider.credential(
                 idToken, accessToken);
             await firebase.auth().signInWithCredential(credentials)
-            
+
         } catch (e){ 
             console.log(e)
         }
 
     } else {
-      console.log('User already signed-in Firebase.');
+      console.log("Cancelled.");
     }
   } catch (e) {
       console.error(e.message);
@@ -42,7 +42,6 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        test_value: "hellow",
         user,
         setUser,
         googleSignIn,
