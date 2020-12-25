@@ -1,10 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import FloatingAction from "../../shared/FloatingAction";
+import { Entypo } from '@expo/vector-icons';
 
 const MenuScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
-      <Text>"Menu screen"</Text>
+      <FloatingAction 
+        onPress={() => {navigation.navigate("Edit Menu")}}
+        icon={<Entypo name="plus" size={28} color="white"/>}
+      />
     </View>
   );
 };

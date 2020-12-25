@@ -18,7 +18,12 @@ const ScheduleNavigator = () => {
       }}
     >
         <ScheduleStack.Screen name={"Schedule Screen"} component={ScheduleScreen}/>
-        <ScheduleStack.Screen name={"Edit Schedule"} component={EditSchedule} options={{headerShown: false}}/>
+        <ScheduleStack.Screen name={"Edit Schedule"} component={EditSchedule}
+        options={{
+          headerTitle: "Add Schedule",
+          headerLeft: null,
+          headerRight: null
+        }}/>
     </ScheduleStack.Navigator>
   );
 };

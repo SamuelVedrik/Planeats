@@ -2,12 +2,12 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const FloatingAction = ({ onPress }) => {
+const FloatingAction = ({ onPress, icon}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
         <View style={styles.button}>
-          <Ionicons name="pencil" size={24} color="white" />
+          {icon}
         </View>
       </TouchableOpacity>
     </View>

@@ -8,6 +8,7 @@ import firebase from "firebase";
 import AppLoading from "expo-app-loading";
 import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 import { Poppins_500Medium } from "@expo-google-fonts/poppins";
+import { Provider as PaperProvider } from 'react-native-paper';
 
 if (!firebase.apps.length) {
   console.log("Initializing app");
@@ -21,9 +22,11 @@ const App = () => {
   }
 
   return (
-    <AuthProvider>
-      <AppNavigator />
-    </AuthProvider>
+    <PaperProvider>
+      <AuthProvider>
+        <AppNavigator />
+      </AuthProvider>
+    </PaperProvider>
 
     // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!</Text>

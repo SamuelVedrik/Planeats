@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import { View, Text, StyleSheet } from "react-native";
 import CalendarSelector from '../components/CalendarSelector';
-import FloatingAction from "../components/FloatingAction";
+import FloatingAction from "../../shared/FloatingAction";
+import { Ionicons } from "@expo/vector-icons";
 
 const ScheduleScreen = ({ navigation, route }) => {
 
@@ -11,7 +12,10 @@ const ScheduleScreen = ({ navigation, route }) => {
     <View style={styles.container}>
       <CalendarSelector onDateSelect={(date) => setDate(date)}/>
       {/* <Text>{currDate.toISOString()}</Text> */}
-      <FloatingAction onPress={() => {navigation.navigate("Edit Schedule", {currDate: currDate.toISOString()})}}/>
+      <FloatingAction 
+      onPress={() => {navigation.navigate("Edit Schedule", {currDate: currDate.toISOString()})}}
+      icon={<Ionicons name="pencil" size={24} color="white" />}  
+      />
     </View>
   );
 };
