@@ -4,17 +4,21 @@ import * as ImagePicker from "expo-image-picker";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { DismissKeyboard } from "./EditMenuInputs";
+// import {uploadMenuImage} from "../../../../services/menuServices";
 
 const DEFAULT = "../../../../assets/logo.png";
 
-const MenuImagePicker = () => {
+const MenuImagePicker = ({setImageURI}) => {
   const [image, setImage] = useState("");
 
   useEffect(() => {
     (async () => {
       const {
-        status,
+        mediaStatus,
       } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    
+      const { cameraStatus } = await ImagePicker.requestCameraPermissionsAsync();
+
     })();
   }, []);
 
@@ -47,7 +51,15 @@ const MenuImagePicker = () => {
   };
 
   const handleImagePicked = async (pickerResult) => {
-    setImage(pickerResult.uri);
+      try{
+        // const uploadURL = await uploadMenuImage(pickerResult.uri);
+        setImage(pickerResult.uri);
+        setImageURI(pickerResult.uri);
+        // setImageURL(uploadURL);
+      } catch (e){
+        console.log("Error occured in handleImagePicked", e.message);
+      }
+
   };
 
   return (
@@ -80,6 +92,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     width: "75%",
+    paddingTop: "2%"
     // borderWidth: 2
   },
   chooseContainer: {

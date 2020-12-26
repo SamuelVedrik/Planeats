@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { LogOutButton } from "../shared/LogoutButton";
 import MenuScreen from "./screens/MenuScreen";
-import EditMenu from "./screens/EditMenu";
+import AddMenu from "./screens/AddMenu";
 
 const MenuStack = createStackNavigator();
 
@@ -20,8 +20,8 @@ const MenuNavigator = () => {
     >
       <MenuStack.Screen name={"Menu Screen"} component={MenuScreen} />
       <MenuStack.Screen
-        name={"Edit Menu"}
-        component={EditMenu}
+        name={"Add Menu"}
+        component={AddMenu}
         options={{
           headerTitle: "Add New Menu",
           headerLeft: null,
