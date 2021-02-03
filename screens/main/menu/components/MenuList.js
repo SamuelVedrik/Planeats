@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import { View, StyleSheet, Text, FlatList, Image } from "react-native";
+import { View, StyleSheet, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import { AuthContext } from "../../../authentication/AuthProvider";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { userMenuQuery } from "../../../../services/menuServices";
+import { useNavigation } from "@react-navigation/native";
 
 const DEFAULT = "../../../../assets/logo.png";
 
-const MenuListComponent = ({ data }) => {
+const MenuListComponent = ({ data, onPress }) => {
   const { name, notes, imageURL, storageRef } = data;
   return (
+    <TouchableOpacity onPress={onPress}>
     <View style={styles.componentContainer}>
       <View style={styles.imageContainer}>
         {imageURL ? (
@@ -19,21 +21,24 @@ const MenuListComponent = ({ data }) => {
       </View>
       <Text style={styles.componentText}>{name}</Text>
     </View>
+    </TouchableOpacity>
   );
 };
 
 const MenuList = () => {
   const { user } = useContext(AuthContext);
+  const navigation = useNavigation();
   let [values, loading, error] = [null, null, null];
   if(user){
-    [values, loading, error] = useCollectionData(userMenuQuery(user.uid));
+    [values, loading, error] = useCollectionData(userMenuQuery(user.uid), {idField: "id"});
   } else{
     values = []
   }
   // const [values, loading, error] = useCollectionData(userMenuQuery(userID));
 
+
   const renderItem = ({item}) => {
-    return <MenuListComponent data={item} />;
+    return <MenuListComponent data={item} onPress={() => navigation.navigate("Edit Menu", {data:item})}/>;
   };
 
   return (

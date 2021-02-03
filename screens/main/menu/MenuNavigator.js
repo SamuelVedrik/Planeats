@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { LogOutButton } from "../shared/LogoutButton";
 import MenuScreen from "./screens/MenuScreen";
 import AddMenu from "./screens/AddMenu";
+import EditMenu from "./screens/EditMenu";
 
 const MenuStack = createStackNavigator();
 
@@ -24,6 +25,15 @@ const MenuNavigator = () => {
         component={AddMenu}
         options={{
           headerTitle: "Add New Menu",
+          headerLeft: null,
+          headerRight: null,
+        }}
+      />
+      <MenuStack.Screen
+        name={"Edit Menu"}
+        component={EditMenu}
+        options={{
+          headerTitle: "Edit Menu",
           headerLeft: null,
           headerRight: null,
         }}

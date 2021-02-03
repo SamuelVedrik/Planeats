@@ -18,8 +18,8 @@ const DismissKeyboard = ({ children }) => {
   );
 };
 
-const NameInput = ({ onChangeText }) => {
-  const [text, setText] = useState(null);
+const NameInput = ({ onChangeText, currText }) => {
+  const [text, setText] = useState(currText ? currText : null);
 
   const isEmpty = () => {
     return text === "";
@@ -32,6 +32,7 @@ const NameInput = ({ onChangeText }) => {
           label="Name"
           placeholder={"Enter dish name"}
           mode="flat"
+          value={text}
           selectionColor="#004E64"
           underlineColor="#004E64"
           style={{backgroundColor: "white"}}
@@ -53,12 +54,14 @@ const NameInput = ({ onChangeText }) => {
   );
 };
 
-const DescriptionInput = ({ onChangeText }) => {
+const DescriptionInput = ({ onChangeText, currText}) => {
+
   return (
     <View style={styles.inputContainer}>
       <MaterialIcons name="notes" size={24} color="black" />
       <TextInput
         label="Notes"
+        value={currText ? currText : ""}
         placeholder={"Enter notes"}
         mode="flat"
         selectionColor="#004E64"

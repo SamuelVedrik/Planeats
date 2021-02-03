@@ -8,8 +8,8 @@ import { DismissKeyboard } from "./EditMenuInputs";
 
 const DEFAULT = "../../../../assets/logo.png";
 
-const MenuImagePicker = ({setImageURI}) => {
-  const [image, setImage] = useState("");
+const MenuImagePicker = ({setImageURI, currURI}) => {
+  const [image, setImage] = useState(currURI ? currURI : "");
 
   useEffect(() => {
     (async () => {
